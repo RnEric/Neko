@@ -1,3 +1,3 @@
 # Neko
 rie的精灵居所 第一代桌宠
-![]("./screenshot.png")
+![]("https://github.com/RnEric/Neko/blob/master/screenshot.png")
