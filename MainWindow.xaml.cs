@@ -39,14 +39,6 @@ namespace Neko
             }
         }
 
-        public static string random_plus_minus()
-        {
-            string[] randpm = { "+", "-" };
-            var new_randpm = new Random();
-            int randpm_selector = new_randpm.Next(0, 1);
-            return randpm[randpm_selector];
-        }
-
         public static string value_100(string member_name)
         {
             string[] nya_meow = { "nya~", "喵~" };
