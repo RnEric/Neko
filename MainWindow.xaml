@@ -5,12 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Neko"
         mc:Ignorable="d"
-        Title="逗猫棒 for rie的精灵居所" Height="300" Width="330">
+        Title="逗猫棒 for rie的精灵居所" Height="420" Width="396">
     <Grid>
-        <Button Content="ruarua毛丹" HorizontalAlignment="Center" Margin="0,101,0,0" VerticalAlignment="Top" FontSize="36" Click="rambutan_Click"/>
-        <Button Content="版本信息" HorizontalAlignment="Center" Margin="0,184,0,0" VerticalAlignment="Top" Click="ver_info_Click"/>
-        <CheckBox x:Name="neko_topmost_check" Content="窗口始终在最前" HorizontalAlignment="Center" Margin="0,237,0,0" VerticalAlignment="Top" Click="neko_Topmost"/>
-        <Button Content="ruarua ori" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="36" Click="ori_Click"/>
+        <Button Content="ruarua毛丹" HorizontalAlignment="Center" Margin="0,172,0,0" VerticalAlignment="Top" FontSize="36" Click="rambutan_Click"/>
+        <Button Content="版本信息" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Click="ver_info_Click"/>
+        <CheckBox x:Name="neko_topmost_check" Content="窗口始终在最前" HorizontalAlignment="Center" Margin="0,352,0,0" VerticalAlignment="Top" Click="neko_Topmost"/>
+        <Button Content="ruarua ori" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" FontSize="36" Click="ori_Click"/>
+        <ProgressBar x:Name="ori_feeling" HorizontalAlignment="Center" Height="10" Margin="0,99,0,0" VerticalAlignment="Top" Width="192"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top"><Run Language="zh-cn" Text="ori好感度: "/></TextBlock>
+        <TextBlock x:Name="ori_feeling_value" HorizontalAlignment="Center" Margin="0,114,0,0" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ori_feeling_value_100" HorizontalAlignment="Center" Margin="0,134,0,0" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top"><Run Language="zh-cn" Text="毛丹"/><Run Text="好感度: "/></TextBlock>
+        <ProgressBar x:Name="rambutan_feeling" HorizontalAlignment="Center" Height="10" Margin="0,253,0,0" VerticalAlignment="Top" Width="192"/>
+        <TextBlock x:Name="rambutan_feeling_value" HorizontalAlignment="Center" Margin="0,268,0,0" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="rambutan_feeling_value_100" HorizontalAlignment="Center" Margin="0,288,0,0" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
