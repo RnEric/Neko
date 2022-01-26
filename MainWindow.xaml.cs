@@ -13,13 +13,9 @@ namespace Neko
         public MainWindow()
         {
             InitializeComponent();
-            var new_random_generator_ori = new Random();
-            int random_generator_ori = new_random_generator_ori.Next(0, Convert.ToInt32(ori_feeling.Maximum) + 1);
-            ori_feeling.Value = random_generator_ori;
+            ori_feeling.Value = random_generator(0, Convert.ToInt32(ori_feeling.Maximum) + 1);
             ori_feeling_value.Text = ori_feeling.Value.ToString();
-            var new_random_generator_rambutan = new Random();
-            int random_generator_rambutan = new_random_generator_rambutan.Next(0, Convert.ToInt32(rambutan_feeling.Maximum) + 1);
-            rambutan_feeling.Value = random_generator_rambutan;
+            rambutan_feeling.Value = random_generator(0, Convert.ToInt32(rambutan_feeling.Maximum) + 1);
             rambutan_feeling_value.Text = rambutan_feeling.Value.ToString();
             if (ori_feeling.Value == 100)
             {
@@ -42,9 +38,29 @@ namespace Neko
         public static string value_100(string member_name)
         {
             string[] nya_meow = { "nya~", "喵~" };
+            return member_name + "最喜欢主人了！" + nya_meow[random_generator(0, 1)];
+        }
+
+        public static void random_message(string which_json)
+        {
+            JObject json_read = JObject.Parse(File.ReadAllText(which_json));
+            JArray random_message = JArray.Parse(json_read["random_message"].ToString());
+            MessageBox.Show(random_message[random_generator(0, random_message.Count)].ToString());
+        }
+
+        public static int random_generator(int min, int max)
+        {
             var new_random_generator = new Random();
-            int random_generator = new_random_generator.Next(0, 1);
-            return member_name + "最喜欢主人了！" + nya_meow[random_generator];
+            return new_random_generator.Next(min, max);
+        }
+
+        public static double random_feeling(int min, int max, double what_number)
+        {
+            int feeling_change = random_generator(min, max);
+            string plus = (feeling_change + what_number).ToString();
+            string minus = (what_number + feeling_change).ToString();
+            string[] value_calculation = { plus, minus };
+            return Convert.ToDouble(value_calculation[random_generator(0, 1)]);
         }
 
         private void ver_info_Click(object sender, RoutedEventArgs e)
@@ -60,21 +76,14 @@ namespace Neko
 
         private void rambutan_Click(object sender, RoutedEventArgs e)
         {
-            var rambutan_click_random = new Random();
-            int rambutan_feeling_change = rambutan_click_random.Next(-20, 20);
-            string rambutan_plus = (rambutan_feeling_change + Convert.ToInt32(rambutan_feeling.Value)).ToString();
-            string rambutan_minus = (Convert.ToInt32(rambutan_feeling.Value) + rambutan_feeling_change).ToString();
-            string[] value_calculation = { rambutan_plus, rambutan_minus };
-            var new_random_result = new Random();
-            int random_result = new_random_result.Next(0, 1);
-            double rambutan_feeling_final = Convert.ToDouble(value_calculation[random_result]);
-            if (Convert.ToInt32(rambutan_feeling_final) > 100)
+            double rambutan_feeling_final = random_feeling(-20, 20, rambutan_feeling.Value);
+            if (rambutan_feeling_final > 100)
             {
                 rambutan_feeling.Value = 100;
                 rambutan_feeling_value.Text = rambutan_feeling.Value.ToString();
                 rambutan_feeling_value_100.Text = value_100("毛丹");
             }
-            else if (Convert.ToInt32(rambutan_feeling_final) < 0)
+            else if (rambutan_feeling_final < 0)
             {
                 rambutan_feeling.Value = 0;
                 rambutan_feeling_value.Text = rambutan_feeling.Value.ToString();
@@ -93,11 +102,7 @@ namespace Neko
                     rambutan_feeling_value_100.Text = "";
                 }
             }
-            JObject rambutan_json_read = JObject.Parse(File.ReadAllText("rambutan.json"));
-            JArray rambutan_random_message = JArray.Parse(rambutan_json_read["random_message"].ToString());
-            var new_random_generator = new Random();
-            int random_generator = new_random_generator.Next(0, rambutan_random_message.Count);
-            MessageBox.Show(rambutan_random_message[random_generator].ToString());
+            random_message("rambutan.json");
         }
 
         private void neko_Topmost(object sender, RoutedEventArgs e)
@@ -114,21 +119,14 @@ namespace Neko
 
         private void ori_Click(object sender, RoutedEventArgs e)
         {
-            var ori_click_random = new Random();
-            int ori_feeling_change = ori_click_random.Next(-20, 20);
-            string ori_plus = (ori_feeling_change + Convert.ToInt32(ori_feeling.Value)).ToString();
-            string ori_minus = (Convert.ToInt32(ori_feeling.Value) + ori_feeling_change).ToString();
-            string[] value_calculation = { ori_plus, ori_minus };
-            var new_random_result = new Random();
-            int random_result = new_random_result.Next(0, 1);
-            double ori_feeling_final = Convert.ToDouble(value_calculation[random_result]);
-            if (Convert.ToInt32(ori_feeling_final) > 100)
+            double ori_feeling_final = random_feeling(-20, 20, ori_feeling.Value);
+            if (ori_feeling_final > 100)
             {
                 ori_feeling.Value = 100;
                 ori_feeling_value.Text = ori_feeling.Value.ToString();
                 ori_feeling_value_100.Text = value_100("ori");
             }
-            else if (Convert.ToInt32(ori_feeling_final) < 0)
+            else if (ori_feeling_final < 0)
             {
                 ori_feeling.Value = 0;
                 ori_feeling_value.Text = ori_feeling.Value.ToString();
@@ -147,11 +145,7 @@ namespace Neko
                     ori_feeling_value_100.Text = "";
                 }
             }
-            JObject ori_json_read = JObject.Parse(File.ReadAllText("ori.json"));
-            JArray ori_random_message = JArray.Parse(ori_json_read["random_message"].ToString());
-            var new_random_generator = new Random();
-            int random_generator = new_random_generator.Next(0, ori_random_message.Count);
-            MessageBox.Show(ori_random_message[random_generator].ToString());
+            random_message("ori.json");
         }
     }
 }
