@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Neko
 {
@@ -38,7 +39,7 @@ namespace Neko
         public static string value_100(string member_name)
         {
             string[] nya_meow = { "nya~", "喵~" };
-            return member_name + "最喜欢主人了！" + nya_meow[random_generator(0, 1)];
+            return member_name + "最喜欢主人了！" + nya_meow[random_generator(0, 2)];
         }
 
         public static void random_message(string which_json)
@@ -60,7 +61,7 @@ namespace Neko
             string plus = (feeling_change + what_number).ToString();
             string minus = (what_number + feeling_change).ToString();
             string[] value_calculation = { plus, minus };
-            return Convert.ToDouble(value_calculation[random_generator(0, 1)]);
+            return Convert.ToDouble(value_calculation[random_generator(0, 2)]);
         }
 
         private void ver_info_Click(object sender, RoutedEventArgs e)
