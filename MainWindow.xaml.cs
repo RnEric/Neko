@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -72,7 +73,7 @@ namespace Neko
             JArray rambutan_random_message = JArray.Parse(rambutan_json_read["random_message"].ToString());
             JArray ori_message_ver = JArray.Parse(ori_json_read["basicinfo"].ToString());
             JArray ori_random_message = JArray.Parse(ori_json_read["random_message"].ToString());
-            MessageBox.Show("毛丹词库版本：" + rambutan_message_ver[0] + "\n词库收录条数：" + rambutan_random_message.Count + "\n\nori词库版本：" + ori_message_ver[0] + "\n词库收录条数：" + ori_random_message.Count);
+            MessageBox.Show("毛丹词库版本：" + rambutan_message_ver[0] + "\n词库收录条数：" + rambutan_random_message.Count + "\n\nori词库版本：" + ori_message_ver[0] + "\n词库收录条数：" + ori_random_message.Count + "\n\n程序版本：" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         private void rambutan_Click(object sender, RoutedEventArgs e)
