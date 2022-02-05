@@ -44,9 +44,16 @@ namespace Neko
 
         public static void random_message(string which_json)
         {
-            JObject json_read = JObject.Parse(File.ReadAllText(which_json));
-            JArray random_message = JArray.Parse(json_read["random_message"].ToString());
-            MessageBox.Show(random_message[random_generator(0, random_message.Count)].ToString());
+            if (!File.Exists(which_json))
+            {
+                MessageBox.Show("缺少配置文件" + which_json + "，请检查程序所在目录下是否有此文件。", "", 0, MessageBoxImage.Error);
+            }
+            else
+            {
+                JObject json_read = JObject.Parse(File.ReadAllText(which_json));
+                JArray random_message = JArray.Parse(json_read["random_message"].ToString());
+                MessageBox.Show(random_message[random_generator(0, random_message.Count)].ToString());
+            }
         }
 
         public static int random_generator(int min, int max)
@@ -66,13 +73,20 @@ namespace Neko
 
         private void ver_info_Click(object sender, RoutedEventArgs e)
         {
-            JObject rambutan_json_read = JObject.Parse(File.ReadAllText("rambutan.json"));
-            JObject ori_json_read = JObject.Parse(File.ReadAllText("ori.json"));
-            JArray rambutan_message_ver = JArray.Parse(rambutan_json_read["basicinfo"].ToString());
-            JArray rambutan_random_message = JArray.Parse(rambutan_json_read["random_message"].ToString());
-            JArray ori_message_ver = JArray.Parse(ori_json_read["basicinfo"].ToString());
-            JArray ori_random_message = JArray.Parse(ori_json_read["random_message"].ToString());
-            MessageBox.Show("毛丹词库版本：" + rambutan_message_ver[0] + "\n词库收录条数：" + rambutan_random_message.Count + "\n\nori词库版本：" + ori_message_ver[0] + "\n词库收录条数：" + ori_random_message.Count + "\n\n程序版本：" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            if (!File.Exists("ori.json") || !File.Exists("rambutan.json"))
+            {
+                MessageBox.Show("缺少必要文件ori.json或rambutan.json，请检查程序所在目录下是否有此文件。", "", 0, MessageBoxImage.Error);
+            }
+            else
+            {
+                JObject rambutan_json_read = JObject.Parse(File.ReadAllText("rambutan.json"));
+                JObject ori_json_read = JObject.Parse(File.ReadAllText("ori.json"));
+                JArray rambutan_message_ver = JArray.Parse(rambutan_json_read["basicinfo"].ToString());
+                JArray rambutan_random_message = JArray.Parse(rambutan_json_read["random_message"].ToString());
+                JArray ori_message_ver = JArray.Parse(ori_json_read["basicinfo"].ToString());
+                JArray ori_random_message = JArray.Parse(ori_json_read["random_message"].ToString());
+                MessageBox.Show("毛丹词库版本：" + rambutan_message_ver[0] + "\n词库收录条数：" + rambutan_random_message.Count + "\n\nori词库版本：" + ori_message_ver[0] + "\n词库收录条数：" + ori_random_message.Count + "\n\n程序版本：" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            }
         }
 
         private void rambutan_Click(object sender, RoutedEventArgs e)
