@@ -2,16 +2,24 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <Version>1.5</Version>
+    <Version>1.6</Version>
     <Authors>EricRen,Ori,神奇的红毛丹</Authors>
     <Copyright>EricRen, Ori, 神奇的红毛丹</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="mofeng_nya.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="mofeng_nya.jpg" />
   </ItemGroup>
 
 </Project>

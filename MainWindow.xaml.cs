@@ -20,6 +20,9 @@ namespace Neko
             rambutan_feeling.Value = random_generator(1, Convert.ToInt32(rambutan_feeling.Maximum) + 1);
             rambutan_feeling_value.Text = rambutan_feeling.Value.ToString();
             rambutan_feeling_value_100.Text = feeling_handle(0, 0, 0, "毛丹", rambutan_feeling.Value)[0];
+            mofeng_feeling.Value = random_generator(1, Convert.ToInt32(mofeng_feeling.Maximum) + 1);
+            mofeng_feeling_value.Text = mofeng_feeling.Value.ToString();
+            mofeng_feeling_value_100.Text = feeling_handle(0, 0, 0, "莫逢", mofeng_feeling.Value)[0];
         }
 
         public static void random_message(string which_json)
@@ -130,6 +133,26 @@ namespace Neko
             ori_feeling_value.Text = ori_feeling.Value.ToString();
             ori_feeling_value_100.Text = ori_feeling_final[1];
             random_message("ori.json");
+        }
+
+        private void mofeng_Click(object sender, RoutedEventArgs e)
+        {
+            if (mofeng_feeling.Value < 100)
+            {
+                string[] mofeng_feeling_final = feeling_handle(-20, 20, mofeng_feeling.Value, "莫逢", -1);
+                mofeng_feeling.Value = Convert.ToDouble(mofeng_feeling_final[0]);
+                mofeng_feeling_value.Text = mofeng_feeling.Value.ToString();
+                mofeng_feeling_value_100.Text = mofeng_feeling_final[1];
+            }
+            else
+            {
+                var Mofeng_nya = new mofeng_nya();
+                Mofeng_nya.Show();
+                string[] mofeng_feeling_final = feeling_handle(-20, 20, mofeng_feeling.Value, "莫逢", -1);
+                mofeng_feeling.Value = Convert.ToDouble(mofeng_feeling_final[0]);
+                mofeng_feeling_value.Text = mofeng_feeling.Value.ToString();
+                mofeng_feeling_value_100.Text = mofeng_feeling_final[1];
+            }
         }
     }
 }
